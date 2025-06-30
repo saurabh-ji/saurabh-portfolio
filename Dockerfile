@@ -1,7 +1,13 @@
-FROM ubuntu
+# Use official Nginx image as the base
+FROM nginx:alpine
 
-WORKDIR /app
+# Remove default nginx page
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY . .
+# Copy your HTML files into nginx's default public folder
+COPY . /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
 
 
