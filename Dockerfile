@@ -1,12 +1,11 @@
-# Use official Nginx image as the base
-FROM httpd:2.4   
-# Remove default nginx page
-WORKDIR /app
+# Use Apache official image
+FROM httpd:2.4
 
-# Copy your HTML files into nginx's default public folder
-COPY . .
+# Copy your website files (HTML/CSS/JS) into Apache's root directory
+COPY ./public-html/ /usr/local/apache2/htdocs/
 
-# Expose port 80
-EXPOSE 5000
+# Optional: Suppress FQDN warning
+RUN echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf
+
 
 
