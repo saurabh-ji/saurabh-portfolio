@@ -1,6 +1,5 @@
 # Use official Nginx image as the base
-FROM nginx:alpine
-
+FROM httpd:2.4   
 # Remove default nginx page
 
 
