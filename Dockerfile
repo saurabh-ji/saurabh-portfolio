@@ -1,7 +1,7 @@
 # Use official Nginx image as the base
 FROM httpd:2.4   
 # Remove default nginx page
-
+WORKDIR /app
 
 # Copy your HTML files into nginx's default public folder
 COPY . .
