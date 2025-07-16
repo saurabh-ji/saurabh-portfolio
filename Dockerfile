@@ -1,10 +1,10 @@
 # Use Apache official image
 FROM httpd:2.4
 
-# Copy your website files (HTML/CSS/JS) into Apache's root directory
-COPY . .
+# Copy website files to Apache's default web root
+COPY . /usr/local/apache2/htdocs/
 
-# Optional: Suppress FQDN warning
+# Suppress FQDN warning
 RUN echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf
 
 
