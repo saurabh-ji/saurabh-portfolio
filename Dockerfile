@@ -1,13 +1,15 @@
-#use official Apache base image
-FROM httpd:2.4
+FROM php:8.1-apache
 
-# Copy custom HTML/CSS/JS files into web root
-COPY . .
+# Enable Apache mod_rewrite (optional but useful)
+RUN a2enmod rewrite
 
-# Optional: Copy custom config if you have one
-# COPY ./my-httpd.conf /usr/local/apache2/conf/httpd.conf
+# Copy your website files to Apache's root directory
+COPY . /var/www/html/
 
-# Suppress FQDN warning
-WORKDIR /app
+# Give proper permissions (optional)
+RUN chown -R www-data:www-data /var/www/html
 
+# Expose port 80
+EXPOSE 80
 
+# Apache starts automatically via entrypoint in base image
