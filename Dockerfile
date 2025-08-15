@@ -1,15 +1,13 @@
 FROM php:8.1-apache
 
-# Enable Apache mod_rewrite (optional but useful)
 RUN a2enmod rewrite
 
-# Copy your website files to Apache's root directory
 COPY . /var/www/html/
 
-# Give proper permissions (optional)
 RUN chown -R www-data:www-data /var/www/html
 
-# Expose port 5000
+# Change Apache to listen on 5000
+RUN sed -i 's/80/5000/g' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf
+
 EXPOSE 5000
 
-# Apache starts automatically via entrypoint in base image
