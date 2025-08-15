@@ -9,7 +9,7 @@ COPY . /var/www/html/
 # Give proper permissions (optional)
 RUN chown -R www-data:www-data /var/www/html
 
-# Expose port 80
-EXPOSE 80
+# Expose port 5000
+EXPOSE 5000
 
 # Apache starts automatically via entrypoint in base image
