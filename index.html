@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saurabh Yadav | DevOps &  Cloud Engineer</title>
+  <title>Saurabh Yadav | DevOps & Cloud Engineer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -23,6 +23,10 @@
       box-sizing: border-box;
     }
     
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--light);
@@ -61,6 +65,12 @@
     
     .logo i {
       font-size: 1.8rem;
+      animation: spin 6s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     
     .nav-links {
@@ -103,6 +113,29 @@
       color: var(--dark);
       cursor: pointer;
     }
+
+    /* Mobile menu active state */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        animation: fadeIn 0.3s ease;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
     
     /* Hero Section */
     .hero {
@@ -138,12 +171,31 @@
       z-index: 1;
     }
     
+    .tagline {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--primary);
+      animation: fadeSlide 1s ease-in-out;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
     .hero-text h1 {
       font-size: 3.5rem;
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: 1.5rem;
       color: var(--dark);
+      animation: fadeSlide 1.2s ease-in-out;
     }
     
     .hero-text h1 span {
@@ -155,17 +207,6 @@
       color: var(--gray);
       margin-bottom: 2rem;
       max-width: 500px;
-    }
-    
-    .tagline {
-      display: inline-block;
-      background: rgba(37, 99, 235, 0.1);
-      color: var(--primary);
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
     }
     
     .cta-buttons {
@@ -188,6 +229,7 @@
     .btn-primary {
       background-color: var(--primary);
       color: white;
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
     }
     
     .btn-primary:hover {
@@ -235,7 +277,8 @@
     }
     
     .tech-icon:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
     }
     
     .tech-icon i {
@@ -284,10 +327,6 @@
     }
     
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
       .mobile-menu-btn {
         display: block;
       }
@@ -311,10 +350,10 @@
         <span>SaurabhYadav</span>
       </a>
       <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </nav>
       <button class="mobile-menu-btn">
         <i class="fas fa-bars"></i>
@@ -323,18 +362,18 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-content">
       <div class="hero-text">
         <span class="tagline">DevOps & Cloud Engineer</span>
         <h1>Hi, I'm <span>Saurabh Yadav</span></h1>
-        <p>I build scalable cloud infrastructure. and automate DevOps workflows using cutting-edge technologies to deliver reliable, efficient. systems.</p>
+        <p>I build scalable cloud infrastructure and automate DevOps workflows using cutting-edge technologies to deliver reliable and efficient systems.</p>
         
         <div class="cta-buttons">
-          <a href="projects.html" class="btn btn-primary">
+          <a href="#projects" class="btn btn-primary">
             <i class="fas fa-code"></i> View Projects
           </a>
-          <a href="contact.html" class="btn btn-secondary">
+          <a href="#contact" class="btn btn-secondary">
             <i class="fas fa-paper-plane"></i> Contact Me
           </a>
         </div>
@@ -372,12 +411,7 @@
     document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
       document.querySelector('.nav-links').classList.toggle('active');
     });
-    
-    // Animation for tech icons
-    const techIcons = document.querySelectorAll('.tech-icon');
-    techIcons.forEach((icon, index) => {
-      icon.style.animationDelay = `${index * 0.1}s`;
-    });
   </script>
 </body>
 </html>
+
