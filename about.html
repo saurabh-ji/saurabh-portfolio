@@ -1,148 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Saurabh Yadav - Cloud Solutions Architect</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --dark: #1e293b;
-      --light: #f8fafc;
-      --accent: #10b981;
-      --gray: #64748b;
-      --light-gray: #e2e8f0;
+    :root{
+      --primary:#2563eb;--primary-dark:#1d4ed8;--dark:#1e293b;--light:#f8fafc;--accent:#10b981;--gray:#64748b;--light-gray:#e2e8f0
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);line-height:1.6;overflow-x:hidden}
 
-    header {
-      background-color: white;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-      position: fixed;
-      width: 100%;
-      z-index: 100;
+    /* Header */
+    header{position:fixed;top:0;left:0;right:0;background:#fff;z-index:50;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
+    .navbar{max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--primary);font-weight:700;font-size:1.2rem}
+    .logo-icon{width:44px;height:44px;border-radius:999px;background:rgba(37,99,235,.1);display:grid;place-items:center}
+    .nav-links{display:flex;gap:1.25rem}
+    .nav-links a{position:relative;text-decoration:none;color:var(--gray);font-weight:500}
+    .nav-links a:hover,.nav-links a.active{color:var(--primary)}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--primary);transition:width .25s ease}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+    .mobile-menu-btn{display:none;border:none;background:transparent;font-size:1.25rem;color:var(--dark);cursor:pointer}
+    /* mobile dropdown */
+    @media (max-width:768px){
+      .nav-links{display:none}
+      .nav-links.active{display:block;position:absolute;top:100%;left:0;right:0;background:#fff;border-top:1px solid var(--light-gray);padding:1rem 1.25rem}
+      .nav-links.active a{display:block;padding:.5rem 0}
+      .mobile-menu-btn{display:block}
     }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .logo-icon {
-      font-size: 1.8rem;
-      color: var(--primary);
-      background: rgba(37, 99, 235, 0.1);
-      padding: 0.5rem;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      color: var(--gray);
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-    }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      bottom: -4px;
-      left: 0;
-      transition: width 0.3s ease;
-    }
-    .nav-links a:hover::after { width: 100%; }
-    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--dark); cursor: pointer; }
 
-    /* SLIDER */
-    .slider-container {
-      margin-top: 100px;
-      overflow: hidden;
-      width: 100%;
-      position: relative;
-    }
-    .slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      width: 200%;
-    }
-    .slide {
-      width: 100%;
-      flex-shrink: 0;
-      padding: 3rem 2rem;
-    }
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.8rem 1rem;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    .prev { left: 10px; }
-    .next { right: 10px; }
+    /* Slider */
+    .slider-container{max-width:1200px;margin:96px auto 32px;position:relative;overflow:hidden;border-radius:12px}
+    .slider-track{display:flex;transition:transform .6s cubic-bezier(.22,.61,.36,1);will-change:transform}
+    .slide{min-width:100%;padding:2rem;background:transparent}
 
-    /* About Styling */
-    .about-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .profile-image {
-      width: 100%;
-      max-width: 350px;
-      border-radius: 1rem;
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-    }
-    .about-text h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
-    .about-text h3 { font-size: 1.2rem; color: var(--gray); margin-bottom: 1rem; }
-    .certification { background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; display: flex; gap: 1rem; align-items: center; }
-    .skills .skill-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    .skill-tag { background: rgba(37, 99, 235, 0.1); color: var(--primary); padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 500; font-size: 0.9rem; }
+    /* Nav buttons */
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);border:none;border-radius:999px;background:var(--primary);color:#fff;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 16px rgba(37,99,235,.25)}
+    .slider-btn:disabled{opacity:.5;cursor:not-allowed}
+    .prev{left:10px}
+    .next{right:10px}
 
-    /* Experience */
-    .experience { max-width: 800px; margin: auto; text-align: center; }
-    .experience-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-    }
-    .experience-title { font-size: 1.5rem; margin: 1rem 0; }
-    .experience-date { color: var(--primary); font-weight: bold; }
-    .experience-desc { color: var(--gray); margin-bottom: 1rem; }
+    /* Dots */
+    .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;gap:.5rem;background:rgba(255,255,255,.8);padding:.4rem .6rem;border-radius:999px;backdrop-filter:saturate(150%) blur(6px)}
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--light-gray);border:none;cursor:pointer}
+    .dot.active{background:var(--primary)}
 
-    @media (max-width: 768px) {
-      .about-container { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .mobile-menu-btn { display: block; }
-    }
+    /* Sections content */
+    .about-container{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+    .about-image{text-align:center}
+    .profile-image{width:100%;max-width:360px;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,.1)}
+    .about-text h2{font-size:2.2rem;margin-bottom:.75rem;color:var(--primary)}
+    .about-text h3{font-size:1.1rem;color:var(--gray);margin-bottom:1rem;font-weight:500}
+    .about-text p{margin-bottom:1rem}
+    .certification{display:flex;gap:.8rem;align-items:flex-start;background:rgba(16,185,129,.12);padding:1rem;border-radius:10px;margin:1rem 0}
+    .certification i{color:var(--accent)}
+    .certification a{color:var(--primary);text-decoration:none}
+    .certification a:hover{text-decoration:underline}
+    .skills{margin-top:1rem}
+    .skills h4{color:var(--primary);margin-bottom:.6rem}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:.6rem}
+    .skill-tag{background:rgba(37,99,235,.1);color:var(--primary);padding:.45rem .9rem;border-radius:999px;font-size:.9rem;font-weight:500}
+
+    .experience{max-width:800px;margin:0 auto;text-align:center}
+    .section-title{font-size:2rem;margin-bottom:1.25rem;color:var(--primary)}
+    .experience-card{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
+    .experience-date{color:var(--primary);font-weight:600;margin-bottom:.4rem}
+    .experience-title{font-size:1.25rem;margin-bottom:.6rem}
+    .experience-desc{color:var(--gray)}
+
+    /* Responsive */
+    @media (max-width:992px){.about-container{grid-template-columns:1fr}}
+    @media (max-width:480px){.slider-btn{width:38px;height:38px}}
   </style>
 </head>
 <body>
@@ -159,77 +90,148 @@
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
     </div>
   </header>
 
-  <!-- SLIDER -->
-  <div class="slider-container">
-    <div class="slider" id="slider">
-      
+  <!-- Slider -->
+  <div class="slider-container" id="sliderContainer" aria-roledescription="carousel" aria-label="About slider">
+    <div class="slider-track" id="sliderTrack">
+
       <!-- Slide 1: About -->
-      <div class="slide">
-        <section class="about">
-          <div class="about-container">
-            <div class="about-image">
-              <img src="assets/images/profile.jpg" alt="Saurabh Yadav" class="profile-image">
-            </div>
-            <div class="about-text">
-              <h2>About Me</h2>
-              <h3>Cloud Solutions Architect</h3>
-              <p>I'm an AWS Certified Solutions Architect with expertise in designing and implementing cloud infrastructure solutions.</p>
-              <div class="certification">
-                <i class="fas fa-certificate"></i>
-                <div>
-                  <strong>AWS Certified Solutions Architect - Associate</strong> (Feb 2024)<br>
-                  <a href="#" target="_blank">View Certificate</a>
-                </div>
+      <section class="slide" aria-label="About Me">
+        <div class="about-container">
+          <div class="about-image">
+            <img src="assets/images/profile.jpg" alt="Portrait of Saurabh Yadav" class="profile-image" onerror="this.style.display='none'">
+          </div>
+          <div class="about-text">
+            <h2>About Me</h2>
+            <h3>Cloud Solutions Architect</h3>
+            <p>I'm an AWS Certified Solutions Architect with expertise in designing and implementing cloud infrastructure solutions. My experience spans across cloud services, system administration, , Cloud Solution Architect and DevOps practices.</p>
+            <p>I specialize in creating scalable, secure, and cost-effective cloud architectures that drive business growth and operational efficiency.</p>
+            <div class="certification">
+              <i class="fas fa-certificate"></i>
+              <div>
+                <strong>AWS Certified Solutions Architect - Associate</strong> (February 2024)<br>
+                <!-- Replace # with your hosted certificate URL -->
+                <a href="#" target="_blank" rel="noopener">file:///D:/SAURABH%20RESUME/Saurabh%20AWS%20Certified%20Solutions%20Architect%20-%20Associate%20certificate%20(1).pdf</a>
               </div>
-              <div class="skills">
-                <h4>Technical Skills</h4>
-                <div class="skill-tags">
-                  <span class="skill-tag">AWS</span>
-                  <span class="skill-tag">Cloud Migration</span>
-                  <span class="skill-tag">Kubernetes</span>
-                  <span class="skill-tag">Linux</span>
-                  <span class="skill-tag">Python</span>
-                  <span class="skill-tag">Docker</span>
-                  <span class="skill-tag">Jenkins</span>
-                </div>
+            </div>
+            <div class="skills">
+              <h4>Technical Skills</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">AWS services</span>
+                <span class="skill-tag">Cloud Migration</span>
+                <span class="skill-tag">Kubernetes (basic)</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Python (Fundamentals)</span>
+                <span class="skill-tag">Cloud Security</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Jenkins</span>
+				<span class="skill-tag">Bash scripting</span>
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
       <!-- Slide 2: Experience -->
-      <div class="slide">
-        <section class="experience">
+      <section class="slide" aria-label="Professional Experience">
+        <div class="experience">
           <h2 class="section-title">Professional Experience</h2>
           <div class="experience-card">
-            <div class="experience-date">Dec 2023</div>
+            <div class="experience-date">December 2023</div>
             <h3 class="experience-title">System Administrator</h3>
-            <p class="experience-desc">Worked on system administration, Linux server management, and cloud operations.</p>
+            <p class="experience-desc">I am a dedicated and detail-oriented System Administrator with hands-on experience in managing servers, networks, and IT infrastructure. Skilled in configuring and maintaining operating systems (Linux/Windows), monitoring system performance, and ensuring data security through regular updates, backups, and access control. Proficient in troubleshooting hardware, software, and networking issues to minimize downtime and improve efficiency. Experienced in implementing automation and best practices to streamline administrative tasks. Strong knowledge of cloud platforms (AWS), virtualization, and DevOps tools, enabling seamless integration between on-premises and cloud environments. With a focus on security, reliability, and scalability, I ensure IT systems run smoothly to support business operations..</p>
+            <div class="skill-tags" style="justify-content:center;margin-top:1rem">
+              
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
     </div>
 
-    <!-- Navigation buttons -->
-    <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
+    <!-- Controls -->
+    <button class="slider-btn prev" id="prevBtn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+    <button class="slider-btn next" id="nextBtn" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+    <div class="dots" id="dots" aria-label="Slide indicators"></div>
   </div>
 
   <script>
-    let currentSlide = 0;
-    function moveSlide(direction) {
-      const slider = document.getElementById("slider");
-      const slides = document.querySelectorAll(".slide");
-      currentSlide = (currentSlide + direction + slides.length) % slides.length;
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
+    // Mobile nav toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function(){
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // Slider logic
+    (function(){
+      const track = document.getElementById('sliderTrack');
+      const container = document.getElementById('sliderContainer');
+      const slides = Array.from(track.children);
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsWrap = document.getElementById('dots');
+
+      let index = 0;
+      let autoPlay = true;         // set to false if you want manual-only
+      const delay = 5000;          // autoplay interval (ms)
+      let timer = null;
+
+      // Create dots
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot' + (i === 0 ? ' active' : '');
+        b.setAttribute('aria-label', 'Go to slide ' + (i+1));
+        b.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(b);
+      });
+
+      const dots = Array.from(dotsWrap.children);
+
+      function update(){
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+      }
+      function goTo(i){ index = (i + slides.length) % slides.length; update(); restart(); }
+      function next(){ goTo(index + 1); }
+      function prev(){ goTo(index - 1); }
+
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+
+      // Keyboard support
+      window.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight') next();
+        if(e.key === 'ArrowLeft') prev();
+      });
+
+      // Swipe support
+      let startX = 0, deltaX = 0, dragging = false;
+      const onStart = (x)=>{ dragging = true; startX = x; deltaX = 0; track.style.transition = 'none'; };
+      const onMove = (x)=>{ if(!dragging) return; deltaX = x - startX; track.style.transform = 'translateX(' + (-index*100 + (deltaX/container.clientWidth)*100) + '%)'; };
+      const onEnd = ()=>{
+        if(!dragging) return; dragging = false; track.style.transition = '';
+        if (Math.abs(deltaX) > container.clientWidth * 0.15){ deltaX < 0 ? next() : prev(); } else { update(); }
+      };
+      container.addEventListener('touchstart', (e)=>onStart(e.touches[0].clientX), {passive:true});
+      container.addEventListener('touchmove',  (e)=>onMove(e.touches[0].clientX), {passive:true});
+      container.addEventListener('touchend',   onEnd);
+      container.addEventListener('mousedown', (e)=>onStart(e.clientX));
+      window.addEventListener('mousemove', (e)=>onMove(e.clientX));
+      window.addEventListener('mouseup', onEnd);
+
+      // Autoplay
+      function start(){ if(!autoPlay) return; timer = setInterval(next, delay); }
+      function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+      function restart(){ stop(); start(); }
+      container.addEventListener('mouseenter', stop);
+      container.addEventListener('mouseleave', start);
+
+      // Init
+      update();
+      start();
+    })();
   </script>
 </body>
 </html>
-
