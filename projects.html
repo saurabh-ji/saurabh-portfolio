@@ -1,58 +1,435 @@
-<!-- projects.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects - DevOps & Cloud Engineer</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; margin: 0; }
-    header { background-color: #232f3e; color: white; padding: 20px; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; }
-    .project-container { padding: 40px; max-width: 1000px; margin: auto; }
-    .project { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .project h3 { color: #232f3e; }
-    .project a { color: #0073e6; text-decoration: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Cloud Architecture Projects</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #232f3e;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        h2 {
+            color: #ff9900;
+            border-bottom: 2px solid #ff9900;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #232f3e;
+        }
+        .project {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .architecture {
+            background-color: #f9f9f9;
+            border-left: 4px solid #ff9900;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .steps {
+            background-color: #e6f2ff;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .note {
+            background-color: #fff8e1;
+            padding: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 10px 0;
+        }
+        .benefits {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>My Projects</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="resume.html">Resume</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <div class="project-container">
+    <header>
+        <h1>AWS Cloud Architecture Projects</h1>
+        <p>Hands-on implementation of core AWS services for solution architecture</p>
+    </header>
 
     <div class="project">
-      <h3>🔧 EC2 Auto Start/Stop using Lambda & EventBridge</h3>
-      <p>Automated cost-saving by starting/stopping EC2 instances on a schedule using Lambda functions and cron expressions.</p>
-      <p><strong>Tools:</strong> AWS Lambda, EventBridge, IAM, Python</p>
-      <a href="#">GitHub Repo</a>
+        <h2>1. Secure Infrastructure with Bastion Host</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Implemented a jump server (bastion host) in a public subnet to provide secure SSH access to EC2 instances in private subnets. The solution uses security groups to restrict access only from the bastion host to private instances.</p>
+            <p><strong>Added Enhancement:</strong> Configured AWS Systems Manager Session Manager as a backup access method that doesn't require open SSH ports.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Created a VPC with public and private subnets across two availability zones</li>
+                <li>Launched an EC2 instance in the public subnet as the bastion host</li>
+                <li>Configured security groups:
+                    <ul>
+                        <li>Bastion host SG: Allow SSH only from approved IP ranges</li>
+                        <li>Private instance SG: Allow SSH only from the bastion host's security group</li>
+                    </ul>
+                </li>
+                <li>Set up SSH key pair authentication</li>
+                <li>Configured NAT gateway for outbound internet access from private instances</li>
+                <li>Enabled detailed monitoring and CloudWatch logs for the bastion host</li>
+            </ol>
+        </div>
+        
+        <div class="benefits">
+            <h3>Security Benefits:</h3>
+            <ul>
+                <li>Reduced attack surface by eliminating direct SSH access to private instances</li>
+                <li>Centralized access control through the bastion host</li>
+                <li>All SSH sessions can be logged and audited</li>
+                <li>Private instances have no public IP addresses</li>
+            </ul>
+        </div>
     </div>
 
     <div class="project">
-      <h3>☁️ Dockerized Django App with CI/CD</h3>
-      <p>Built and deployed a Django web app using Docker and GitHub Actions CI/CD pipeline to AWS EC2.</p>
-      <p><strong>Tools:</strong> Docker, GitHub Actions, EC2, Nginx</p>
-      <a href="#">GitHub Repo</a>
+        <h2>2. Remote Access with AWS Client VPN</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Deployed AWS Client VPN to provide secure remote access to VPC resources without exposing them to the public internet. Integrated with Active Directory for authentication.</p>
+            <p><strong>Added Enhancement:</strong> Implemented split-tunnel routing to optimize bandwidth usage by only routing VPC traffic through the VPN.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Created a certificate authority (CA) using AWS Certificate Manager (ACM)</li>
+                <li>Configured the Client VPN endpoint in the VPC</li>
+                <li>Set up authorization rules to control access to specific subnets</li>
+                <li>Configured security groups to allow necessary traffic from VPN clients</li>
+                <li>Distributed client configuration files with the appropriate certificates</li>
+                <li>Enabled connection logging to CloudWatch Logs</li>
+            </ol>
+        </div>
+        
+        <div class="note">
+            <p><strong>Note:</strong> Client VPN provides TLS 1.2 encryption by default and supports multi-factor authentication when integrated with AWS Directory Service.</p>
+        </div>
     </div>
 
     <div class="project">
-      <h3>🚀 Kubernetes Setup for Web App Deployment</h3>
-      <p>Configured a Kubernetes cluster with master and worker nodes for automatic deployment and scaling.</p>
-      <p><strong>Tools:</strong> Kubernetes, Kubeadm, Helm, Nginx Ingress</p>
-      <a href="#">GitHub Repo</a>
+        <h2>3. Hybrid Cloud with Site-to-Site VPN</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Established a secure IPSec VPN tunnel between AWS VPC and an on-premises data center using AWS Virtual Private Gateway and customer gateway.</p>
+            <p><strong>Added Enhancement:</strong> Configured BGP routing for dynamic path selection and failover between two tunnels for high availability.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Created a virtual private gateway and attached it to the VPC</li>
+                <li>Configured the customer gateway with the on-premises VPN device details</li>
+                <li>Created VPN connections with two tunnels for redundancy</li>
+                <li>Configured routing (both static and BGP options)</li>
+                <li>Verified tunnel status and monitored connection metrics in CloudWatch</li>
+                <li>Tested failover between tunnels by manually bringing one down</li>
+            </ol>
+        </div>
+        
+        <div class="benefits">
+            <h3>Operational Benefits:</h3>
+            <ul>
+                <li>Encrypted connectivity between cloud and on-premises at 1.25 Gbps per tunnel</li>
+                <li>Automatic renegotiation of VPN tunnels if they go down</li>
+                <li>Integration with existing on-premises security policies</li>
+                <li>Cost-effective alternative to AWS Direct Connect for moderate bandwidth needs</li>
+            </ul>
+        </div>
     </div>
 
-  </div>
+    <div class="project">
+        <h2>4. Private S3 Access with VPC Endpoint</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Created a Gateway VPC endpoint for S3 to allow private EC2 instances to access S3 buckets without traversing the public internet, improving security and reducing data transfer costs.</p>
+            <p><strong>Added Enhancement:</strong> Implemented S3 bucket policies and VPC endpoint policies for fine-grained access control.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Identified the route tables for private subnets that needed S3 access</li>
+                <li>Created a Gateway VPC endpoint for S3 service</li>
+                <li>Associated the endpoint with the identified route tables</li>
+                <li>Verified that new routes to S3 were added automatically</li>
+                <li>Created an S3 bucket policy to restrict access only through the VPC endpoint</li>
+                <li>Tested access from private instances to S3 using AWS CLI</li>
+            </ol>
+        </div>
+        
+        <div class="note">
+            <p><strong>Note:</strong> VPC endpoints for S3 don't incur additional hourly charges or data processing costs, making them highly cost-effective for private S3 access.</p>
+        </div>
+    </div>
 
+    <div class="project">
+        <h2>5. EC2 Key Pair Recovery Solution</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Developed a recovery process for EC2 instances when the key pair is lost, using EBS volume attachment to a recovery instance.</p>
+            <p><strong>Added Enhancement:</strong> Automated the recovery process using AWS Systems Manager Automation documents for consistent, auditable recovery operations.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Stopped the affected EC2 instance (can't modify volumes of running instances)</li>
+                <li>Created a temporary recovery instance with a known key pair</li>
+                <li>Detached the root volume from the original instance</li>
+                <li>Attached the volume to the recovery instance as a secondary volume</li>
+                <li>Mounted the volume on the recovery instance and modified the authorized_keys file</li>
+                <li>Unmounted and detached the volume, then reattached to original instance</li>
+                <li>Started the original instance and verified SSH access</li>
+                <li>Terminated the recovery instance after successful recovery</li>
+            </ol>
+        </div>
+        
+        <div class="note">
+            <p><strong>Security Best Practice:</strong> After recovery, rotate the key pair and consider implementing AWS Systems Manager for keyless access to reduce dependency on key pairs.</p>
+        </div>
+    </div>
+
+    <div class="project">
+        <h2>6. Static Website Hosting on S3</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Deployed a static website using Amazon S3 website hosting feature with CloudFront CDN for global distribution and Route 53 for DNS.</p>
+            <p><strong>Added Enhancement:</strong> Implemented CI/CD pipeline using AWS CodePipeline to automatically deploy changes from GitHub repository to S3.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Created an S3 bucket named to match the intended website domain</li>
+                <li>Uploaded static website files (HTML, CSS, JavaScript, images)</li>
+                <li>Configured the bucket for static website hosting in properties</li>
+                <li>Set bucket policy to make objects publicly readable</li>
+                <li>Created CloudFront distribution with the S3 bucket as origin</li>
+                <li>Configured custom domain in Route 53 with alias record pointing to CloudFront</li>
+                <li>Enabled HTTPS using ACM certificate</li>
+                <li>Set up S3 versioning and lifecycle policies for backup management</li>
+            </ol>
+        </div>
+        
+        <div class="benefits">
+            <h3>Performance Benefits:</h3>
+            <ul>
+                <li>99.9% availability SLA with S3</li>
+                <li>Global low-latency delivery through CloudFront's 200+ edge locations</li>
+                <li>Cost-effective storage with S3's pay-as-you-go model</li>
+                <li>Built-in DDoS protection with AWS Shield Standard</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="project">
+        <h2>7. Dynamic Website Hosting on Apache2</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Deployed a dynamic web application on EC2 with Apache2 web server, using Auto Scaling group and Application Load Balancer for high availability.</p>
+            <p><strong>Added Enhancement:</strong> Implemented blue/green deployment strategy using AWS CodeDeploy for zero-downtime updates.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Launched EC2 instance with Amazon Linux 2 AMI</li>
+                <li>Installed Apache web server and necessary PHP/Node.js packages</li>
+                <li>Configured virtual hosts and security settings</li>
+                <li>Created AMI from configured instance</li>
+                <li>Set up Launch Template using the AMI</li>
+                <li>Created Auto Scaling group spanning multiple AZs</li>
+                <li>Configured Application Load Balancer with health checks</li>
+                <li>Set up CloudWatch alarms for scaling policies</li>
+                <li>Configured Route 53 with ALIAS record pointing to ALB</li>
+            </ol>
+        </div>
+        
+        <div class="note">
+            <p><strong>Operational Tip:</strong> Consider migrating to AWS Elastic Beanstalk or ECS for simplified management of web applications while maintaining control over the underlying resources.</p>
+        </div>
+    </div>
+
+    <div class="project">
+        <h2>8. Server Management with Lambda</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Created a serverless solution using AWS Lambda to stop EC2 instances based on specific criteria, triggered by CloudWatch Events on a schedule.</p>
+            <p><strong>Added Enhancement:</strong> Extended functionality to automatically tag instances before stopping and send notification via SNS.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Created IAM role with permissions to describe and stop EC2 instances</li>
+                <li>Wrote Python Lambda function using Boto3 to:
+                    <ul>
+                        <li>Identify instances with specific tags (e.g., "AutoStop=true")</li>
+                        <li>Verify instance state before attempting to stop</li>
+                        <li>Apply "StoppedByLambda" tag with timestamp</li>
+                        <li>Publish notification to SNS topic</li>
+                    </ul>
+                </li>
+                <li>Created CloudWatch Events rule on cron schedule (e.g., daily at 7 PM)</li>
+                <li>Configured the rule to trigger the Lambda function</li>
+                <li>Tested functionality by manually triggering the Lambda</li>
+            </ol>
+        </div>
+        
+        <div class="benefits">
+            <h3>Cost Optimization:</h3>
+            <ul>
+                <li>Automated stopping of non-production instances during off-hours</li>
+                <li>Potential savings of 65-75% on EC2 costs for dev/test environments</li>
+                <li>Serverless execution means no infrastructure to manage</li>
+                <li>Pay only for the milliseconds when Lambda is executing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="project">
+        <h2>9. Monitoring with CloudWatch Alarms</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Configured comprehensive monitoring for EC2 instances with CloudWatch alarms that trigger SNS notifications when thresholds are breached.</p>
+            <p><strong>Added Enhancement:</strong> Implemented EC2 Auto Recovery actions for system status check failures.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Created SNS topic for notifications with email subscriptions</li>
+                <li>Configured CloudWatch alarms for:
+                    <ul>
+                        <li>CPU utilization > 80% for 5 minutes</li>
+                        <li>Status check failures (system and instance)</li>
+                        <li>Memory utilization (using custom metrics from CloudWatch agent)</li>
+                        <li>Disk space thresholds</li>
+                    </ul>
+                </li>
+                <li>Set up EC2 Auto Recovery action for system status check failures</li>
+                <li>Configured alarm actions to send SNS notifications</li>
+                <li>Created dashboard to visualize all alarms and metrics</li>
+            </ol>
+        </div>
+        
+        <div class="note">
+            <p><strong>Pro Tip:</strong> For production workloads, consider setting up different notification channels (SMS, Slack, PagerDuty) based on alarm severity levels.</p>
+        </div>
+    </div>
+
+    <div class="project">
+        <h2>10. Domain Hosting with Route 53</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Managed DNS for a domain using Route 53 with health checks and failover routing policies for high availability.</p>
+            <p><strong>Added Enhancement:</strong> Implemented DNSSEC for additional security against DNS spoofing attacks.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Registered a new domain or transferred existing domain to Route 53</li>
+                <li>Created hosted zone for the domain</li>
+                <li>Configured record sets:
+                    <ul>
+                        <li>A record for web traffic pointing to ALB</li>
+                        <li>MX records for email</li>
+                        <li>TXT records for domain verification</li>
+                        <li>CNAME records for subdomains</li>
+                    </ul>
+                </li>
+                <li>Set up health checks for critical endpoints</li>
+                <li>Configured failover routing between primary and secondary regions</li>
+                <li>Enabled DNSSEC signing for the hosted zone</li>
+                <li>Configured domain renewal auto-pay to prevent accidental expiration</li>
+            </ol>
+        </div>
+        
+        <div class="benefits">
+            <h3>DNS Advantages:</h3>
+            <ul>
+                <li>100% SLA for Route 53</li>
+                <li>Anycast routing for low-latency DNS resolution</li>
+                <li>Integration with other AWS services through alias records</li>
+                <li>Traffic flow for complex routing scenarios</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="project">
+        <h2>11. Custom VPC Design</h2>
+        <div class="architecture">
+            <h3>Architecture Overview</h3>
+            <p>Designed and implemented a custom VPC following AWS best practices with public and private subnets across multiple availability zones.</p>
+            <p><strong>Added Enhancement:</strong> Implemented VPC Flow Logs for network traffic monitoring and security analysis.</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Implementation Steps:</h3>
+            <ol>
+                <li>Created VPC with appropriate CIDR block considering future growth</li>
+                <li>Designed subnet strategy:
+                    <ul>
+                        <li>Public subnets for internet-facing resources</li>
+                        <li>Private subnets for application servers</li>
+                        <li>Isolated subnets for databases</li>
+                    </ul>
+                </li>
+                <li>Configured route tables with:
+                    <ul>
+                        <li>Internet gateway for public subnets</li>
+                        <li>NAT gateway for private subnets</li>
+                    </ul>
+                </li>
+                <li>Set up network ACLs for subnet-level firewall rules</li>
+                <li>Enabled VPC Flow Logs to capture IP traffic data</li>
+                <li>Configured DHCP options set with custom DNS servers</li>
+                <li>Peered with other VPCs as needed for inter-VPC communication</li>
+            </ol>
+        </div>
+        
+        <div class="note">
+            <p><strong>Design Consideration:</strong> When planning CIDR blocks, ensure there's no overlap with any networks you might need to connect to (on-premises or other VPCs).</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>AWS Cloud Architecture Projects &copy; 2023 | Prepared for AWS Solutions Architect portfolio</p>
+        <p>All implementations follow AWS Well-Architected Framework principles</p>
+    </footer>
 </body>
 </html>
