@@ -1,306 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		  <meta charset="UTF-8">
-		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		      <title>About | Saurabh Yadav - Cloud Solutions Architect</title>
-		        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-			  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-			    <style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Saurabh Yadav - Cloud Solutions Architect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
     :root {
-	          --primary: #2563eb;
-		        --primary-dark: #1d4ed8;
-			      --dark: #1e293b;
-			            --light: #f8fafc;
-				          --accent: #10b981;
-					        --gray: #64748b;
-						      --light-gray: #e2e8f0;
-						          }
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --accent: #10b981;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-	    body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: var(--dark); line-height: 1.6; }
+    header {
+      background-color: white;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-icon {
+      font-size: 1.8rem;
+      color: var(--primary);
+      background: rgba(37, 99, 235, 0.1);
+      padding: 0.5rem;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      bottom: -4px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--dark); cursor: pointer; }
 
-	        /* Header */
-	        header {
-			      background-color: white;
-			            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-				          position: fixed;
-					        width: 100%;
-						      z-index: 100;
-						          }
-		    .navbar {
-			          display: flex;
-				        justify-content: space-between;
-					      align-items: center;
-					            padding: 1.5rem 2rem;
-						          max-width: 1200px;
-							        margin: 0 auto;
-								    }
-		        .logo {
-				      font-size: 1.5rem;
-				            font-weight: 700;
-					          color: var(--primary);
-						        text-decoration: none;
-							      display: flex;
-							            align-items: center;
-								          gap: 0.5rem;
-									      }
-			    .logo-icon {
-				          font-size: 1.8rem;
-					        color: var(--primary);
-						      background: rgba(37, 99, 235, 0.1);
-						            padding: 0.5rem;
-							          border-radius: 50%;
-								        display: flex;
-									      align-items: center;
-									            justify-content: center;
-										          width: 50px;
-											        height: 50px;
-												    }
-			        .nav-links { display: flex; gap: 2rem; }
-				    .nav-links a {
-					          color: var(--gray);
-						        text-decoration: none;
-							      font-weight: 500;
-							            position: relative;
-								        }
-				        .nav-links a:hover { color: var(--primary); }
-					    .nav-links a::after {
-						          content: '';
-							        position: absolute;
-								      width: 0;
-								            height: 2px;
-									          background: var(--primary);
-										        bottom: -4px;
-											      left: 0;
-											            transition: width 0.3s ease;
-												        }
-					        .nav-links a:hover::after { width: 100%; }
-						    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--dark); cursor: pointer; }
+    /* SLIDER */
+    .slider-container {
+      margin-top: 100px;
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 200%;
+    }
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      padding: 3rem 2rem;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
 
-						        /* About Section */
-						        .about {
-								      padding: 8rem 2rem 4rem;
-								            max-width: 1200px;
-									          margin: 0 auto;
-										      }
-							    .about-container {
-								          display: grid;
-									        grid-template-columns: 1fr 1fr;
-										      gap: 4rem;
-										            align-items: center;
-											        }
-							        .about-image {
-									      position: relative;
-									            text-align: center;
-										        }
-								    .profile-image {
-									          width: 100%;
-										        max-width: 400px;
-											      border-radius: 1rem;
-											            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-												        }
-								        .about-text h2 {
-										      font-size: 2.5rem;
-										            margin-bottom: 1.5rem;
-											          color: var(--primary);
-												      }
-									    .about-text h3 {
-										          font-size: 1.2rem;
-											        color: var(--gray);
-												      margin-bottom: 2rem;
-												            font-weight: 500;
-													        }
-									        .about-text p {
-											      margin-bottom: 1.5rem;
-											            color: var(--dark);
-												        }
-										    .certification {
-											          background: rgba(16, 185, 129, 0.1);
-												        padding: 1rem;
-													      border-radius: 0.5rem;
-													            margin: 1.5rem 0;
-														          display: flex;
-															        align-items: center;
-																      gap: 1rem;
-																          }
-										        .certification i {
-												      color: var(--accent);
-												            font-size: 1.5rem;
-													        }
-											    .certification a {
-												          color: var(--primary);
-													        text-decoration: none;
-														      font-weight: 500;
-														          }
-											        .certification a:hover {
-													      text-decoration: underline;
-													          }
-												    .skills {
-													          margin-top: 2rem;
-														      }
-												        .skills h4 {
-														      margin-bottom: 1rem;
-														            color: var(--primary);
-															        }
-													    .skill-tags {
-														          display: flex;
-															        flex-wrap: wrap;
-																      gap: 0.8rem;
-																          }
-													        .skill-tag {
-															      background: rgba(37, 99, 235, 0.1);
-															            color: var(--primary);
-																          padding: 0.5rem 1rem;
-																	        border-radius: 2rem;
-																		      font-size: 0.9rem;
-																		            font-weight: 500;
-																			        }
+    /* About Styling */
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .profile-image {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+    .about-text h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
+    .about-text h3 { font-size: 1.2rem; color: var(--gray); margin-bottom: 1rem; }
+    .certification { background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; display: flex; gap: 1rem; align-items: center; }
+    .skills .skill-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .skill-tag { background: rgba(37, 99, 235, 0.1); color: var(--primary); padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 500; font-size: 0.9rem; }
 
-														    /* Experience Section */
-														    .experience {
-															          padding: 4rem 2rem;
-																        max-width: 800px;
-																	      margin: 0 auto;
-																	            text-align: center;
-																		        }
-														        .section-title {
-																      text-align: center;
-																            font-size: 2rem;
-																	          margin-bottom: 3rem;
-																		        color: var(--primary);
-																			    }
-															    .experience-card {
-																          background: white;
-																	        padding: 2rem;
-																		      border-radius: 0.5rem;
-																		            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-																			          margin-bottom: 2rem;
-																				      }
-															        .experience-date {
-																	      color: var(--primary);
-																	            font-weight: 600;
-																		          margin-bottom: 0.5rem;
-																			      }
-																    .experience-title {
-																	          font-size: 1.5rem;
-																		        margin-bottom: 1rem;
-																			    }
-																        .experience-desc {
-																		      color: var(--gray);
-																		            margin-bottom: 1.5rem;
-																			        }
-																	    .tech-used {
-																		          display: flex;
-																			        flex-wrap: wrap;
-																				      justify-content: center;
-																				            gap: 0.8rem;
-																					        }
-																	        .tech-item {
-																			      background: rgba(37, 99, 235, 0.1);
-																			            color: var(--primary);
-																				          padding: 0.5rem 1rem;
-																					        border-radius: 2rem;
-																						      font-size: 0.9rem;
-																						            font-weight: 500;
-																							        }
+    /* Experience */
+    .experience { max-width: 800px; margin: auto; text-align: center; }
+    .experience-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .experience-title { font-size: 1.5rem; margin: 1rem 0; }
+    .experience-date { color: var(--primary); font-weight: bold; }
+    .experience-desc { color: var(--gray); margin-bottom: 1rem; }
 
-																		    /* Responsive */
-																		    @media (max-width: 992px) {
-																			          .about-container {
-																					          grid-template-columns: 1fr;
-																						        }
-																				        .about-image {
-																						        order: -1;
-																							        margin-bottom: 2rem;
-																								      }
-																					    }
-																		        @media (max-width: 768px) {
-																				      .nav-links { display: none; }
-																				            .mobile-menu-btn { display: block; }
-																					          .logo-icon {
-																							          width: 40px;
-																								          height: 40px;
-																									          font-size: 1.5rem;
-																										        }
-																						      }
-																			  </style>
-	</head>
-	<body>
-		  <!-- Header -->
-		    <header>
-			        <div class="navbar">
-					      <a href="index.html" class="logo">
-						              <div class="logo-icon">
-								                <i class="fas fa-cloud"></i>
-										        </div>
-											        <span>Saurabh Yadav</span>
-												      </a>
-												            <nav class="nav-links">
-														            <a href="index.html">Home</a>
-															            <a href="about.html" class="active">About</a>
-																            <a href="projects.html">Projects</a>
-																	            <a href="contact.html">Contact</a>
-																		          </nav>
-																			        <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-																				    </div>
-																				      </header>
+    @media (max-width: 768px) {
+      .about-container { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-cloud"></i></div>
+        <span>Saurabh Yadav</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
 
-																				        <!-- About Section -->
-																					  <section class="about">
-																						      <div class="about-container">
-																							            <div class="about-image">
-																									            <img src="assets/images/profile.jpg" alt="Saurabh Yadav" class="profile-image">
-																										          </div>
-																											        <div class="about-text">
-																													        <h2>About Me</h2>
-																														        <h3>Cloud Solutions Architect</h3>
-																															        <p>I'm an AWS Certified Solutions Architect with expertise in designing and implementing cloud infrastructure solutions. My experience spans across cloud services, system administration, and DevOps practices.</p>
-																																        <p>I specialize in creating scalable, secure, and cost-effective cloud architectures that drive business growth and operational efficiency.</p>
-																																	        
-																																	        <div class="certification">
-																																			          <i class="fas fa-certificate"></i>
-																																				            <div>
-																																						                <strong>AWS Certified Solutions Architect - Associate</strong> (February 2024)<br>
-																																								            <a href="file:///D:/SAURABH%20RESUME/Saurabh%20AWS%20Certified%20Solutions%20Architect%20-%20Associate%20certificate%20(1).pdf" target="_blank">View Certificate</a>
-																																									              </div>
-																																										              </div>
-																																											              
-																																											              <div class="skills">
-																																													                <h4>Technical Skills</h4>
-																																															          <div class="skill-tags">
-																																																	              <span class="skill-tag">AWS services</span>
-																																																		                  <span class="skill-tag">Cloud Migration</span>
-																																																				              <span class="skill-tag">Kubernetes (basic)</span>
-																																																					                  <span class="skill-tag">Linux </span>
-																																																							              <span class="skill-tag">Python</span>
-																																																								                  <span class="skill-tag">Cloud Security</span>
-																																																										  			<span class="skill-tag">Docker</span>
-																																																																<span class="skill-tag">jenkins</span>
-																																																																          </div>
-																																																																	          </div>
-																																																																		        </div>
-																																																																			    </div>
-																																																																			      </section>
+  <!-- SLIDER -->
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      
+      <!-- Slide 1: About -->
+      <div class="slide">
+        <section class="about">
+          <div class="about-container">
+            <div class="about-image">
+              <img src="assets/images/profile.jpg" alt="Saurabh Yadav" class="profile-image">
+            </div>
+            <div class="about-text">
+              <h2>About Me</h2>
+              <h3>Cloud Solutions Architect</h3>
+              <p>I'm an AWS Certified Solutions Architect with expertise in designing and implementing cloud infrastructure solutions.</p>
+              <div class="certification">
+                <i class="fas fa-certificate"></i>
+                <div>
+                  <strong>AWS Certified Solutions Architect - Associate</strong> (Feb 2024)<br>
+                  <a href="#" target="_blank">View Certificate</a>
+                </div>
+              </div>
+              <div class="skills">
+                <h4>Technical Skills</h4>
+                <div class="skill-tags">
+                  <span class="skill-tag">AWS</span>
+                  <span class="skill-tag">Cloud Migration</span>
+                  <span class="skill-tag">Kubernetes</span>
+                  <span class="skill-tag">Linux</span>
+                  <span class="skill-tag">Python</span>
+                  <span class="skill-tag">Docker</span>
+                  <span class="skill-tag">Jenkins</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-																																																																			        <!-- Experience Section -->
-																																																																				  <section class="experience">
-																																																																					      <h2 class="section-title">Professional Experience</h2>
-																																																																					          <div class="experience-card">
-																																																																							        <div class="experience-date"> December 2023</div>
-																																																																								      <h3 class="experience-title">System Administrator</h3>
-																																																																								            <p class="experience-desc">
-																																																																									          </p>
-																																																																										        <div class="tech-used">
-																																																																												      </div>
-																																																																												          </div>
-																																																																													    </section>
+      <!-- Slide 2: Experience -->
+      <div class="slide">
+        <section class="experience">
+          <h2 class="section-title">Professional Experience</h2>
+          <div class="experience-card">
+            <div class="experience-date">Dec 2023</div>
+            <h3 class="experience-title">System Administrator</h3>
+            <p class="experience-desc">Worked on system administration, Linux server management, and cloud operations.</p>
+          </div>
+        </section>
+      </div>
 
-																																																																													      <script>
-																																																																														          // Mobile menu toggle
-																																																																														          document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-																																																																																        document.querySelector('.nav-links').classList.toggle('active');
-																																																																																      });
-																																																																															    </script>
-	</body>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    function moveSlide(direction) {
+      const slider = document.getElementById("slider");
+      const slides = document.querySelectorAll(".slide");
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+  </script>
+</body>
 </html>
+
